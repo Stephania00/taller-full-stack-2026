@@ -95,7 +95,7 @@ En local se puede dejar abierto (`cors()` sin opciones) o apuntarlo también a `
 - [x] Crear `css/theme.css` y `js/theme.js` (sistema de diseño + toggle dark/light + link activo automático)
 - [x] Crear `login.html` — mockup visual listo para conectar al backend en Sprint 4
 - [x] Crear `js/login.js` — stub documentado con los TODO de Sprint 4
-- [x] Crear `FRONTEND.md` — documentación técnica del frontend (arquitectura, componentes, buenas prácticas)
+- [x] Crear `docs/FRONTEND.md` — documentación técnica del frontend (arquitectura, componentes, buenas prácticas)
 - [x] Crear `README_TALLER_FULL_STACK_2026.md` — guía de arquitectura, roles, setup y despliegue para el equipo
 
 ### Entregable
@@ -110,12 +110,12 @@ Tres páginas HTML con Bootstrap integrado, navegación funcional y apariencia d
 
 ### Tareas
 
-- [ ] Crear `frontend/productos.html`
-- [ ] Agregar la nueva página al navbar en todos los archivos HTML
-- [ ] Construir cuadrícula con Bootstrap Cards (imagen, nombre, categoría, precio)
-- [ ] Crear `frontend/js/productos.js` — renderizar tarjetas desde un array de objetos JS (mockup)
-- [ ] Incluir al menos 3 categorías y 6 productos simulados
-- [ ] Estilizar hover y responsive (mobile-first con grid de Bootstrap)
+- [x] Crear `frontend/productos.html`
+- [x] Agregar `Productos` al navbar en **todos** los archivos HTML (index, ayuda, contacto, productos)
+- [x] Construir cuadrícula con Bootstrap Cards (imagen, nombre, descripción, precio, categoría, stock)
+- [x] Crear `frontend/js/productos.js` — renderizar tarjetas desde un array de objetos JS (mockup)
+- [x] Incluir al menos 3 categorías y 6 productos simulados (8 productos, 5 categorías)
+- [x] Estilizar hover y responsive (mobile-first con grid de Bootstrap)
 
 ### Entregable
 
@@ -129,33 +129,51 @@ Página `productos.html` mostrando tarjetas de productos con datos simulados, si
 
 ### Base de datos — nueva tabla
 
+> ⚠️ Campo `imagen` (no `imagen_url`). Incluye `stock`. Sin `creado_en`. Alineado con Guía 2 del instructor.
+
 ```sql
+USE contactos_db;
+
 CREATE TABLE productos (
   id          INT AUTO_INCREMENT PRIMARY KEY,
-  nombre      VARCHAR(150)   NOT NULL,
+  nombre      VARCHAR(100)   NOT NULL,
   descripcion TEXT,
-  categoria   VARCHAR(100),
   precio      DECIMAL(10,2)  NOT NULL,
-  imagen_url  VARCHAR(255),
-  creado_en   TIMESTAMP      DEFAULT CURRENT_TIMESTAMP
+  categoria   VARCHAR(100),
+  stock       INT            DEFAULT 0,
+  imagen      VARCHAR(255)
 );
+```
+
+### Insertar productos de prueba
+
+```sql
+INSERT INTO productos (nombre, descripcion, precio, categoria, stock, imagen)
+VALUES
+  ('Smartphone Aurora 5G', 'Pantalla AMOLED 6.7", 108 MP, batería 5000 mAh', 749900, 'Móviles', 15, 'img/smartphone.jpg'),
+  ('Notebook UltraBook Pro', 'Intel i7, 16 GB RAM, 512 GB SSD', 1349900, 'Laptops', 8, 'img/laptop.jpg'),
+  ('Auriculares NoiseFree ANC', 'Cancelación de ruido, 30h batería', 189900, 'Audio', 20, 'img/auriculares.jpg');
 ```
 
 ### Tareas — Backend (`server.js`)
 
-- [ ] `GET    /productos`       — listar todos los productos
-- [ ] `GET    /productos/:id`   — obtener uno por ID
-- [ ] `POST   /productos`       — crear producto
-- [ ] `PUT    /productos/:id`   — editar producto
-- [ ] `DELETE /productos/:id`   — eliminar producto
+- [x] `GET    /productos`       — listar todos los productos (`SELECT * FROM productos`)
+- [x] `POST   /productos`       — crear producto (`INSERT`)
+- [x] `PUT    /productos/:id`   — editar producto (`UPDATE`)
+- [x] `DELETE /productos/:id`   — eliminar producto (`DELETE`)
+- [x] Agregar función `campoVacio()` para validar campos obligatorios
 
 ### Tareas — Frontend
 
-- [ ] Crear `frontend/admin-productos.html` con tabla de productos y botones de acción
-- [ ] Crear `frontend/js/admin-productos.js` — consumir todas las rutas CRUD con `fetch`
-- [ ] Conectar `productos.html` al endpoint `GET /productos` (reemplazar el mockup del Sprint 2)
-- [ ] Formulario de creación/edición en modal Bootstrap
-- [ ] Confirmación antes de eliminar (`confirm()` o modal)
+- [x] Crear `frontend/admin-productos.html` — formulario con `id="formProducto"` y tabla con `id="tablaProductos"`
+- [x] El formulario debe tener campos: nombre, descripcion, precio, categoria, stock, imagen
+- [x] Botones **Editar** y **Eliminar** en cada fila de la tabla
+- [x] Actualizar `frontend/js/productos.js` — agregar funciones CRUD (listar, guardar, editar, eliminar)
+- [x] Conectar `productos.html` al endpoint `GET /productos` (reemplazar el mockup del Sprint 2)
+- [x] Confirmación antes de eliminar (`confirm()`)
+
+> **Nota:** Se usa un solo archivo `productos.js` para el catálogo público y el admin, alineado con la Guía 2.
+> `admin-productos.html` **no** aparece en el navbar principal — es página administrativa.
 
 ### Entregable
 
@@ -194,7 +212,7 @@ CREATE TABLE usuarios (
 
 ### Tareas — Despliegue
 
-- [ ] Crear repositorio en GitHub y hacer push del proyecto (sin `node_modules`)
+- [x] Crear repositorio en GitHub y hacer push del proyecto (sin `node_modules`) — https://github.com/Stephania00/taller-full-stack-2026
 - [ ] Conectar el repositorio a Vercel para el frontend
 - [ ] Crear proyecto en Railway, conectar MySQL y configurar variables de entorno:
   - `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `JWT_SECRET`

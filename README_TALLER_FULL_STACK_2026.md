@@ -58,24 +58,32 @@ Proyecto académico SENA. Tienda online de tecnología construida con HTML/CSS/J
 ```
 Taller_Full_Satck_2026/
 ├── frontend/
-│   ├── index.html          → Inicio de la tienda
-│   ├── ayuda.html          → FAQ y soporte
-│   ├── contacto.html       → Formulario conectado al backend
-│   ├── login.html          → Login (mockup — se activa en Sprint 4)
+│   ├── index.html              → Inicio de la tienda
+│   ├── ayuda.html              → FAQ y soporte
+│   ├── contacto.html           → Formulario conectado al backend
+│   ├── productos.html          → Catálogo público de productos
+│   ├── admin-productos.html    → Panel de administración CRUD
+│   ├── login.html              → Login (mockup — se activa en Sprint 4)
 │   ├── css/
-│   │   ├── theme.css       → Sistema de diseño completo (tokens, dark mode, componentes)
-│   │   └── estilos.css     → Overrides locales (stub)
-│   └── js/
-│       ├── script.js       → Lógica del formulario de contacto (fetch al backend)
-│       ├── theme.js        → Toggle dark/light persistente + link activo automático
-│       └── login.js        → Stub para Sprint 4 (autenticación JWT)
+│   │   ├── theme.css           → Sistema de diseño completo
+│   │   └── estilos.css         → Overrides locales
+│   ├── js/
+│   │   ├── theme.js            → Toggle dark/light + link activo
+│   │   ├── script.js           → Formulario de contacto → backend
+│   │   ├── productos.js        → Catálogo público + CRUD admin
+│   │   └── login.js            → Stub para Sprint 4
+│   └── img/                    → Imágenes de productos
 ├── backend/
-│   ├── server.js           → API Express: todas las rutas en un archivo
+│   ├── server.js               → API Express: todas las rutas
 │   ├── package.json
 │   └── pnpm-lock.yaml
-├── PLAN_SPRINTS.md         → Spec y estado de tareas por sprint
-├── AGENTS.md               → Reglas para el agente de IA (Claude Code)
-├── FRONTEND.md             → Documentación técnica del frontend
+├── docs/                       → Documentación técnica del proyecto
+│   ├── FRONTEND.md             → Cómo funciona el frontend
+│   ├── BACKEND.md              → Cómo funciona el backend
+│   ├── BASE_DE_DATOS.md        → Tablas, campos y SQL
+│   └── ARQUITECTURA.md         → Conexiones, flujos y qué no tocar
+├── PLAN_SPRINTS.md             → Spec y estado de tareas por sprint
+├── AGENTS.md                   → Reglas para el agente de IA
 └── README_TALLER_FULL_STACK_2026.md  → Este archivo
 ```
 
