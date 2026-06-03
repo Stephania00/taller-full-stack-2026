@@ -1,105 +1,289 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Mi primera página Web" />
-    <title>Mi Blog</title>
-    <link rel="stylesheet" href="css/estilos.css" />
-  </head>
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda Nube · Tecnología para tu día a día</title>
+  <meta name="description" content="Tienda Nube — tu tienda online de tecnología: móviles, laptops, audio, gaming y accesorios." />
 
-  <body>
-    <div class="agrupar">
-      <!-- ENCABEZADO -->
-      <header class="cabecera">
-        <h1>Mi Blog</h1>
-      </header>
+  <!-- Bootstrap 5.3 + Bootstrap Icons (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Tema Tienda Nube -->
+  <link href="css/theme.css" rel="stylesheet" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
 
-      <!-- MENÚ DE NAVEGACIÓN -->
-      <nav class="menu">
-        <ul>
-          <li><a href="index.html">Principal</a></li>
-          <li><a href="ayuda.html">Ayuda</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar tn-nav navbar-expand-lg sticky-top py-2" data-screen-label="Navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-mark"><i class="bi bi-cloud-fill"></i></span>
+        Tienda<span class="text-primary">Nube</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-label="Menú">
+        <i class="bi bi-list fs-2"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav mx-lg-3 gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categorías</a>
+            <ul class="dropdown-menu shadow-soft border-0">
+              <li><a class="dropdown-item" href="producto.html"><i class="bi bi-phone me-2"></i>Móviles</a></li>
+              <li><a class="dropdown-item" href="producto.html"><i class="bi bi-laptop me-2"></i>Laptops</a></li>
+              <li><a class="dropdown-item" href="producto.html"><i class="bi bi-headphones me-2"></i>Audio</a></li>
+              <li><a class="dropdown-item" href="producto.html"><i class="bi bi-controller me-2"></i>Gaming</a></li>
+              <li><a class="dropdown-item" href="producto.html"><i class="bi bi-mouse me-2"></i>Accesorios</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="ayuda.html">Ayuda</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
-      </nav>
 
-      <!-- CONTENIDO PRINCIPAL -->
-      <section class="seccion">
-        <!-- ARTÍCULO 1 -->
-        <article>
-          <div class="titulos">
-            <h2>Título del primer artículo</h2>
-            <h3>Subtítulo del artículo</h3>
+        <form class="tn-search d-flex flex-grow-1 me-lg-3 my-3 my-lg-0" role="search" onsubmit="return false">
+          <div class="input-group">
+            <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-search"></i></span>
+            <input class="form-control border-start-0" type="search" placeholder="Buscar productos, marcas y más…" aria-label="Buscar" />
           </div>
+        </form>
 
-          <time datetime="2020-04-07">
-            Publicado miércoles 7 de abril de 2020
-          </time>
-
-          <!-- IMAGEN -->
-          <img src="img/logo_sena.png" alt="Logo del SENA" />
-
-          <p>
-            Este es un ejemplo de contenido del artículo principal. Aquí se
-            explica información relevante del sitio.
-          </p>
-
-          <footer>
-            <p>Comentarios (0)</p>
-          </footer>
-
-          <!-- ENLACE EXTERNO -->
-          <a href="https://www.sena.edu.co" target="_blank"> Visitar SENA </a>
-
-          <!-- VIDEO -->
-          <video
-            src="video/video_guille.mp4"
-            controls
-            width="640"
-            height="480"
-          ></video>
-        </article>
-
-        <!-- ARTÍCULO 2 -->
-        <article>
-          <div class="titulos">
-            <h2>Título del segundo artículo</h2>
-            <h3>Subtítulo del artículo</h3>
-          </div>
-
-          <time datetime="2026-04-27">
-            Publicado lunes 27 de abril de 2026
-          </time>
-
-          <p class="green">
-            Segundo contenido del blog con información adicional.
-          </p>
-
-          <footer>
-            <p>Comentarios (10)</p>
-          </footer>
-
-          <a
-            href="http://oferta.senasofiaplus.edu.co/sofia-oferta/"
-            target="_blank"
-          >
-            Visitar Sofía Plus
+        <div class="d-flex align-items-center gap-2">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">
+            <i class="bi bi-moon-stars-fill" data-theme-icon></i>
+          </button>
+          <a class="icon-btn" href="#" aria-label="Carrito">
+            <i class="bi bi-bag"></i><span class="cart-count">3</span>
           </a>
-        </article>
-      </section>
-
-      <!-- BARRA LATERAL -->
-      <aside class="columna">
-        <blockquote>Mensaje 1</blockquote>
-
-        <blockquote>Mensaje 2</blockquote>
-      </aside>
-
-      <!-- PIE DE PÁGINA -->
-      <footer class="pie">
-        Derechos reservados Guillermo Bejarano Reyes 2026
-      </footer>
+          <a class="btn btn-primary px-3 d-none d-sm-inline-flex" href="login.html">
+            <i class="bi bi-person me-1"></i> Ingresar
+          </a>
+        </div>
+      </div>
     </div>
-    <script src="js/script.js"></script>
-  </body>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" data-screen-label="Hero">
+    <div class="container py-5">
+      <div class="row align-items-center g-5 py-lg-4">
+        <div class="col-lg-6">
+          <span class="hero-eyebrow mb-3"><i class="bi bi-lightning-charge-fill"></i> Envío gratis desde $50.000</span>
+          <h1 class="display-4 fw-bold mb-3">La <span class="text-gradient">tecnología</span> que querés, en la nube de tu bolsillo.</h1>
+          <p class="fs-5 text-secondary mb-4" style="max-width: 33rem;">
+            Móviles, laptops, audio, gaming y accesorios de las mejores marcas. Precios claros, cuotas sin interés y entregas rápidas.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="producto.html" class="btn btn-primary btn-lg"><i class="bi bi-bag-check me-2"></i>Ver catálogo</a>
+            <a href="#categorias" class="btn btn-outline-primary btn-lg">Explorar categorías</a>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="producto.html" class="chip"><i class="bi bi-phone"></i> Móviles</a>
+            <a href="producto.html" class="chip"><i class="bi bi-laptop"></i> Laptops</a>
+            <a href="producto.html" class="chip"><i class="bi bi-headphones"></i> Audio</a>
+            <a href="producto.html" class="chip"><i class="bi bi-controller"></i> Gaming</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="position-relative">
+            <div class="ph ph-4-3 shadow-brand"><span class="ph-label">[ hero — producto destacado ]</span></div>
+            <div class="card border-0 shadow-brand p-3 position-absolute" style="bottom: -22px; left: -10px; max-width: 230px;">
+              <div class="d-flex align-items-center gap-3">
+                <span class="cat-icon" style="width:46px;height:46px;font-size:1.2rem;"><i class="bi bi-truck"></i></span>
+                <div>
+                  <div class="fw-bold lh-1">24-48h</div>
+                  <small class="text-secondary">Entrega exprés</small>
+                </div>
+              </div>
+            </div>
+            <div class="card border-0 shadow-brand p-3 position-absolute" style="top: -18px; right: -8px; max-width: 210px;">
+              <div class="d-flex align-items-center gap-2">
+                <span class="rating">★★★★★</span>
+                <div><div class="fw-bold lh-1">4,9/5</div><small class="text-secondary">+12.000 reseñas</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ BARRA DE CONFIANZA ============ -->
+  <section class="py-4 border-top border-bottom" style="border-color: var(--tn-border) !important;">
+    <div class="container">
+      <div class="row g-4 text-center text-md-start">
+        <div class="col-6 col-md-3"><div class="trust-item justify-content-center justify-content-md-start"><i class="bi bi-truck"></i><div><div class="fw-semibold lh-1">Envío gratis</div><small class="text-secondary">en compras +$50.000</small></div></div></div>
+        <div class="col-6 col-md-3"><div class="trust-item justify-content-center justify-content-md-start"><i class="bi bi-shield-check"></i><div><div class="fw-semibold lh-1">Garantía oficial</div><small class="text-secondary">hasta 24 meses</small></div></div></div>
+        <div class="col-6 col-md-3"><div class="trust-item justify-content-center justify-content-md-start"><i class="bi bi-credit-card-2-front"></i><div><div class="fw-semibold lh-1">Hasta 12 cuotas</div><small class="text-secondary">sin interés</small></div></div></div>
+        <div class="col-6 col-md-3"><div class="trust-item justify-content-center justify-content-md-start"><i class="bi bi-arrow-counterclockwise"></i><div><div class="fw-semibold lh-1">30 días</div><small class="text-secondary">para devoluciones</small></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORÍAS ============ -->
+  <section id="categorias" class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <p class="eyebrow mb-1">Explorá por rubro</p>
+          <h2 class="section-title h1 mb-0">Categorías</h2>
+        </div>
+        <a href="producto.html" class="btn btn-soft d-none d-sm-inline-flex">Ver todo <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+      <div class="row g-3 g-md-4">
+        <div class="col-6 col-md-4 col-lg-2"><a class="cat-tile" href="producto.html"><span class="cat-icon"><i class="bi bi-phone"></i></span><span class="fw-semibold">Móviles</span><small class="text-secondary">320+ productos</small></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="cat-tile" href="producto.html"><span class="cat-icon"><i class="bi bi-laptop"></i></span><span class="fw-semibold">Laptops</span><small class="text-secondary">180+ productos</small></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="cat-tile" href="producto.html"><span class="cat-icon"><i class="bi bi-headphones"></i></span><span class="fw-semibold">Audio</span><small class="text-secondary">240+ productos</small></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="cat-tile" href="producto.html"><span class="cat-icon"><i class="bi bi-controller"></i></span><span class="fw-semibold">Gaming</span><small class="text-secondary">150+ productos</small></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="cat-tile" href="producto.html"><span class="cat-icon"><i class="bi bi-smartwatch"></i></span><span class="fw-semibold">Wearables</span><small class="text-secondary">90+ productos</small></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="cat-tile" href="producto.html"><span class="cat-icon"><i class="bi bi-mouse"></i></span><span class="fw-semibold">Accesorios</span><small class="text-secondary">500+ productos</small></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTOS DESTACADOS ============ -->
+  <section class="py-5 pt-0">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <p class="eyebrow mb-1">Lo más vendido</p>
+          <h2 class="section-title h1 mb-0">Productos destacados</h2>
+        </div>
+        <a href="producto.html" class="btn btn-soft d-none d-sm-inline-flex">Ver más <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+
+      <div class="row g-3 g-md-4" id="grid-productos"><!-- inyectado por JS --></div>
+    </div>
+  </section>
+
+  <!-- ============ PROMO / CTA ============ -->
+  <section class="py-4">
+    <div class="container">
+      <div class="promo p-4 p-md-5">
+        <div class="row align-items-center g-4 position-relative" style="z-index:1;">
+          <div class="col-lg-7">
+            <span class="badge bg-white text-primary mb-3 px-3 py-2 rounded-pill"><i class="bi bi-stars me-1"></i> Semana Tech</span>
+            <h2 class="display-6 fw-bold mb-2">Hasta 35% OFF en gaming y audio</h2>
+            <p class="fs-5 mb-0 opacity-75">Solo por tiempo limitado. Sumá cuotas sin interés y envío gratis a todo el país.</p>
+          </div>
+          <div class="col-lg-5 text-lg-end">
+            <a href="producto.html" class="btn btn-light btn-lg px-4 fw-bold"><i class="bi bi-tag me-2"></i>Aprovechar ofertas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POR QUÉ TIENDA NUBE ============ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="eyebrow mb-1">Comprá con confianza</p>
+        <h2 class="section-title h1 mb-2">¿Por qué Tienda Nube?</h2>
+        <p class="text-secondary mb-0">Una experiencia de compra simple, segura y rápida.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3"><div class="card card-hover h-100 border-0 p-4"><span class="cat-icon mb-3"><i class="bi bi-patch-check"></i></span><h5 class="fw-head">Productos originales</h5><p class="text-secondary mb-0 small">Solo trabajamos con distribuidores oficiales y garantía de fábrica.</p></div></div>
+        <div class="col-md-6 col-lg-3"><div class="card card-hover h-100 border-0 p-4"><span class="cat-icon mb-3"><i class="bi bi-lock"></i></span><h5 class="fw-head">Pago seguro</h5><p class="text-secondary mb-0 small">Encriptación de extremo a extremo y los medios de pago más usados.</p></div></div>
+        <div class="col-md-6 col-lg-3"><div class="card card-hover h-100 border-0 p-4"><span class="cat-icon mb-3"><i class="bi bi-headset"></i></span><h5 class="fw-head">Soporte 24/7</h5><p class="text-secondary mb-0 small">Un equipo real que te acompaña antes, durante y después de la compra.</p></div></div>
+        <div class="col-md-6 col-lg-3"><div class="card card-hover h-100 border-0 p-4"><span class="cat-icon mb-3"><i class="bi bi-box-seam"></i></span><h5 class="fw-head">Seguimiento en vivo</h5><p class="text-secondary mb-0 small">Mirá dónde está tu pedido en cada paso, desde el depósito a tu puerta.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="card border-0 shadow-soft p-4 p-md-5 text-center">
+        <div class="mx-auto" style="max-width: 540px;">
+          <span class="cat-icon mx-auto mb-3"><i class="bi bi-envelope-paper"></i></span>
+          <h3 class="fw-bold mb-2">Sumate al newsletter</h3>
+          <p class="text-secondary mb-4">Recibí ofertas exclusivas, lanzamientos y guías de compra. Sin spam.</p>
+          <form class="row g-2 justify-content-center" onsubmit="return false">
+            <div class="col-sm-8"><input type="email" class="form-control form-control-lg" placeholder="tu@email.com" /></div>
+            <div class="col-sm-4 d-grid"><button class="btn btn-primary btn-lg">Suscribirme</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="tn-footer pt-5 pb-4 mt-3" data-screen-label="Footer">
+    <div class="container">
+      <div class="row g-4 pb-4">
+        <div class="col-lg-4">
+          <a class="navbar-brand mb-3 d-inline-flex" href="index.html">
+            <span class="brand-mark"><i class="bi bi-cloud-fill"></i></span>
+            Tienda<span class="text-primary">Nube</span>
+          </a>
+          <p class="text-secondary" style="max-width: 24rem;">Tu tienda online de tecnología. Productos originales, cuotas sin interés y envíos a todo el país.</p>
+          <div class="d-flex gap-2 mt-3">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-link" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2"><h6 class="text-secondary mb-3">Tienda</h6><ul class="list-unstyled d-grid gap-2"><li><a href="producto.html">Móviles</a></li><li><a href="producto.html">Laptops</a></li><li><a href="producto.html">Audio</a></li><li><a href="producto.html">Gaming</a></li><li><a href="producto.html">Ofertas</a></li></ul></div>
+        <div class="col-6 col-md-3 col-lg-2"><h6 class="text-secondary mb-3">Soporte</h6><ul class="list-unstyled d-grid gap-2"><li><a href="ayuda.html">Centro de ayuda</a></li><li><a href="ayuda.html">Envíos</a></li><li><a href="ayuda.html">Devoluciones</a></li><li><a href="ayuda.html">Garantía</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+        <div class="col-6 col-md-3 col-lg-2"><h6 class="text-secondary mb-3">Empresa</h6><ul class="list-unstyled d-grid gap-2"><li><a href="#">Nosotros</a></li><li><a href="#">Trabajá con nosotros</a></li><li><a href="#">Términos</a></li><li><a href="#">Privacidad</a></li></ul></div>
+        <div class="col-6 col-md-12 col-lg-2"><h6 class="text-secondary mb-3">Mi cuenta</h6><ul class="list-unstyled d-grid gap-2"><li><a href="login.html">Ingresar</a></li><li><a href="registro.html">Crear cuenta</a></li><li><a href="#">Mis pedidos</a></li><li><a href="#">Favoritos</a></li></ul></div>
+      </div>
+      <hr style="border-color: var(--tn-border);" />
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <small class="text-secondary">© 2026 Tienda Nube · Proyecto académico. Todos los derechos reservados.</small>
+        <div class="d-flex gap-2 align-items-center">
+          <span class="pay-chip">VISA</span><span class="pay-chip">MASTERCARD</span><span class="pay-chip">AMEX</span><span class="pay-chip">MERCADO PAGO</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    const productos = [
+      { n: 'Smartphone Aurora 5G 256GB', cat: 'Móviles', precio: 749900, old: 899900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 5 },
+      { n: 'Notebook UltraBook Pro 14"', cat: 'Laptops', precio: 1349900, old: null, tag: 'NUEVO', tagClass: 'text-bg-primary', r: 5 },
+      { n: 'Auriculares NoiseFree ANC', cat: 'Audio', precio: 189900, old: 229900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
+      { n: 'Consola NebulaPlay X', cat: 'Gaming', precio: 999900, old: null, tag: 'TOP', tagClass: 'text-bg-warning', r: 5 },
+      { n: 'Smartwatch Pulse Fit 2', cat: 'Wearables', precio: 159900, old: 199900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
+      { n: 'Teclado Mecánico RGB Strike', cat: 'Accesorios', precio: 89900, old: null, tag: null, tagClass: '', r: 5 },
+      { n: 'Tablet GlideTab 11"', cat: 'Móviles', precio: 429900, old: 499900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
+      { n: 'Monitor 27" QHD 165Hz', cat: 'Gaming', precio: 379900, old: null, tag: 'NUEVO', tagClass: 'text-bg-primary', r: 5 },
+    ];
+    const fmt = n => '$' + n.toLocaleString('es-AR');
+    const stars = r => '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
+    document.getElementById('grid-productos').innerHTML = productos.map(p => `
+      <div class="col-6 col-md-4 col-lg-3">
+        <a href="producto.html" class="text-decoration-none text-reset">
+          <article class="card product-card card-hover h-100 border-0 overflow-hidden">
+            <div class="position-relative">
+              ${p.tag ? `<span class="badge ${p.tagClass} tag-badge rounded-pill">${p.tag}</span>` : ''}
+              <button class="wish-btn" type="button" aria-label="Favorito" onclick="event.preventDefault();this.querySelector('i').classList.toggle('bi-heart');this.querySelector('i').classList.toggle('bi-heart-fill');"><i class="bi bi-heart"></i></button>
+              <div class="ph ph-1-1"><span class="ph-label">[ ${p.cat} ]</span></div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <small class="text-secondary">${p.cat}</small>
+              <h6 class="fw-semibold mt-1 mb-2 lh-sm">${p.n}</h6>
+              <div class="rating mb-2">${stars(p.r)} <span class="text-secondary">(${(Math.random()*400+40|0)})</span></div>
+              <div class="mt-auto d-flex align-items-end justify-content-between">
+                <div>
+                  ${p.old ? `<div class="price-old">${fmt(p.old)}</div>` : ''}
+                  <div class="price fs-5 text-primary">${fmt(p.precio)}</div>
+                </div>
+                <span class="btn btn-soft btn-sm rounded-circle" style="width:38px;height:38px;"><i class="bi bi-bag-plus"></i></span>
+              </div>
+            </div>
+          </article>
+        </a>
+      </div>`).join('');
+  </script>
+  <script src="js/script.js"></script>
+</body>
 </html>

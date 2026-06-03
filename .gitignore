@@ -1,12 +1,33 @@
-# Dependencias Node
+# ── Dependencias ─────────────────────────────────
 node_modules/
 
-# Variables de entorno
+# ── Variables de entorno ─────────────────────────
 .env
+.env.local
+.env.production
 
-# Configuración local
+# ── Archivos de video y audio (binarios pesados) ──
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.mp3
+*.wav
+
+# ── Imágenes de terceros / assets del instructor ──
+# (las imágenes del proyecto SÍ se suben — solo excluir si son muy pesadas)
+# *.png
+# *.jpg
+
+# ── Logs ─────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# ── Editores y SO ────────────────────────────────
 .vscode/
-
-# Archivos del sistema
+.idea/
 .DS_Store
 Thumbs.db
+desktop.ini
