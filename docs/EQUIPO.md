@@ -89,13 +89,15 @@ Nunca trabajés directamente en `main`. Cada uno trabaja en su rama y abre un Pu
 
 ---
 
-### Crear tu rama (solo la primera vez)
+### Cambiar a tu rama (primera vez en tu máquina)
+
+Las ramas ya están creadas en GitHub. Solo tenés que bajarla y moverte a ella:
 
 ```bash
 git checkout main
 git pull origin main
-git checkout -b cesar        # cambiá por tu nombre
-git push -u origin cesar
+git checkout cesar           # cambiá por tu nombre: stephania / cesar / alimson / ashlee
+git pull origin cesar        # sincronizá con el remoto
 ```
 
 ---
