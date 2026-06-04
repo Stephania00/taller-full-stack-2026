@@ -1,22 +1,25 @@
+require('dotenv').config();
+
 const express = require("express");
-const mysql = require("mysql2");
-const cors = require("cors");
+const mysql   = require("mysql2");
+const cors    = require("cors");
+const bcrypt  = require("bcryptjs");
+const jwt     = require("jsonwebtoken");
 
 const app = express();
 
-// Permitir comunicación con frontend
-app.use(cors());
+// ── Middlewares ───────────────────────────────────────────────────────────────
+app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
 app.use(express.json());
 
-// Configuración de conexión
+// ── Conexión MySQL ────────────────────────────────────────────────────────────
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "contactos_db"
+    host:     process.env.DB_HOST,
+    user:     process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
-// Conectar a MySQL
 db.connect((err) => {
     if (err) {
         console.error("Error de conexión:", err);
@@ -25,44 +28,98 @@ db.connect((err) => {
     }
 });
 
-// Ruta de prueba
+// ── Utilidades ────────────────────────────────────────────────────────────────
+function campoVacio(valor) {
+    return valor === undefined || valor === null || valor.toString().trim() === "";
+}
+
+function verificarToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // "Bearer <token>"
+
+    if (!token) return res.status(401).json({ error: 'Acceso denegado. Token requerido.' });
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
+        if (err) return res.status(403).json({ error: 'Token inválido o expirado.' });
+        req.usuario = usuario;
+        next();
+    });
+}
+
+// ── Ruta de prueba ────────────────────────────────────────────────────────────
 app.get("/", (req, res) => {
-    res.send("Servidor conectado a MySQL");
+    res.send("Servidor Tienda Nube conectado a MySQL");
 });
 
-
-// ✅ RUTA PARA GUARDAR DATOS
+// ── Contacto ──────────────────────────────────────────────────────────────────
 app.post("/guardar", (req, res) => {
-
     const { nombre, correo, mensaje } = req.body;
-
-    console.log("Datos recibidos:", req.body);
 
     if (!nombre || !correo || !mensaje) {
         return res.status(400).send("Datos incompletos");
     }
 
     const sql = "INSERT INTO contactos (nombre, correo, mensaje) VALUES (?, ?, ?)";
-
-    db.query(sql, [nombre, correo, mensaje], (err, result) => {
+    db.query(sql, [nombre, correo, mensaje], (err) => {
         if (err) {
             console.error("Error SQL:", err);
             return res.status(500).send("Error en servidor");
         }
-
-        console.log("Registro insertado:", result);
         res.send("Datos guardados correctamente");
     });
 });
 
+// ── Auth ──────────────────────────────────────────────────────────────────────
+app.post("/register", async (req, res) => {
+    const { email, password, secret } = req.body;
 
-// ── Utilidad de validación ────────────────────────────────────────────────────
-function campoVacio(valor) {
-    return valor === undefined || valor === null || valor.toString().trim() === "";
-}
+    if (secret !== process.env.REGISTER_SECRET)
+        return res.status(403).send("No autorizado");
 
-// ── CRUD productos ────────────────────────────────────────────────────────────
+    if (campoVacio(email) || campoVacio(password)) {
+        return res.status(400).send("Email y contraseña son obligatorios");
+    }
 
+    try {
+        const hash = await bcrypt.hash(password, 10);
+        db.query("INSERT INTO usuarios (email, password) VALUES (?, ?)", [email, hash], (err) => {
+            if (err) {
+                if (err.code === 'ER_DUP_ENTRY') return res.status(409).send("El email ya está registrado");
+                console.error("Error SQL:", err);
+                return res.status(500).send("Error al registrar usuario");
+            }
+            res.status(201).send("Usuario registrado correctamente");
+        });
+    } catch (e) {
+        res.status(500).send("Error interno del servidor");
+    }
+});
+
+app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+
+    if (campoVacio(email) || campoVacio(password)) {
+        return res.status(400).send("Email y contraseña son obligatorios");
+    }
+
+    db.query("SELECT * FROM usuarios WHERE email = ?", [email], async (err, resultados) => {
+        if (err) return res.status(500).send("Error en servidor");
+        if (resultados.length === 0) return res.status(401).send("Credenciales incorrectas");
+
+        const usuario = resultados[0];
+        const passwordValida = await bcrypt.compare(password, usuario.password);
+        if (!passwordValida) return res.status(401).send("Credenciales incorrectas");
+
+        const token = jwt.sign(
+            { id: usuario.id, email: usuario.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '8h' }
+        );
+        res.json({ token });
+    });
+});
+
+// ── Productos (GET público — sin token) ───────────────────────────────────────
 app.get("/productos", (req, res) => {
     db.query("SELECT * FROM productos", (err, resultados) => {
         if (err) {
@@ -73,7 +130,8 @@ app.get("/productos", (req, res) => {
     });
 });
 
-app.post("/productos", (req, res) => {
+// ── Productos (escritura — requieren token) ───────────────────────────────────
+app.post("/productos", verificarToken, (req, res) => {
     const { nombre, descripcion, precio, categoria, stock, imagen } = req.body;
 
     if (campoVacio(nombre) || campoVacio(precio)) {
@@ -91,7 +149,7 @@ app.post("/productos", (req, res) => {
     });
 });
 
-app.put("/productos/:id", (req, res) => {
+app.put("/productos/:id", verificarToken, (req, res) => {
     const { id } = req.params;
     const { nombre, descripcion, precio, categoria, stock, imagen } = req.body;
 
@@ -112,7 +170,7 @@ app.put("/productos/:id", (req, res) => {
     });
 });
 
-app.delete("/productos/:id", (req, res) => {
+app.delete("/productos/:id", verificarToken, (req, res) => {
     const { id } = req.params;
     db.query("DELETE FROM productos WHERE id = ?", [id], (err, result) => {
         if (err) {
@@ -124,7 +182,8 @@ app.delete("/productos/:id", (req, res) => {
     });
 });
 
-// Iniciar servidor
-app.listen(3000, () => {
-    console.log("Servidor en http://localhost:3000");
+// ── Iniciar servidor ──────────────────────────────────────────────────────────
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor en http://localhost:${PORT}`);
 });

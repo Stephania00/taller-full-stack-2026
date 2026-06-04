@@ -46,5 +46,17 @@
         link.setAttribute('aria-current', 'page');
       }
     });
+
+    // Cambia el botón "Ingresar" según si hay sesión activa
+    var loginBtn = document.querySelector('.navbar a[href="login.html"]');
+    if (loginBtn) {
+      try {
+        if (localStorage.getItem('tn-token')) {
+          loginBtn.innerHTML = '<i class="bi bi-person-check me-1"></i> Admin';
+          loginBtn.setAttribute('href', 'admin-productos.html');
+          loginBtn.style.whiteSpace = 'nowrap';
+        }
+      } catch (e) {}
+    }
   });
 })();

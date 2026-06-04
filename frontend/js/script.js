@@ -11,9 +11,11 @@ if (formulario) {
 
         console.log("Evento submit ejecutado");
 
-        const nombre = document.getElementById("nombre").value;
-        const correo = document.getElementById("correo").value;
-        const mensaje = document.getElementById("mensaje").value;
+        const nombre  = document.getElementById("nombre").value.trim();
+        const correo  = document.getElementById("correo").value.trim();
+        const mensaje = document.getElementById("mensaje").value.trim();
+        const asunto  = document.getElementById("asunto").value;
+        const acepto  = document.getElementById("acepto").checked;
 
         console.log("Nombre:", nombre);
         console.log("Correo:", correo);
@@ -22,8 +24,16 @@ if (formulario) {
         const respuesta = document.getElementById("respuesta");
 
         // Validación
-        if (nombre === "" || correo === "" || mensaje === "") {
-            respuesta.textContent = "Todos los campos son obligatorios.";
+        if (!nombre || !correo || !mensaje) {
+            respuesta.textContent = "Nombre, email y mensaje son obligatorios.";
+            return;
+        }
+        if (!asunto) {
+            respuesta.textContent = "Por favor seleccioná un asunto.";
+            return;
+        }
+        if (!acepto) {
+            respuesta.textContent = "Debés aceptar la política de privacidad.";
             return;
         }
 
