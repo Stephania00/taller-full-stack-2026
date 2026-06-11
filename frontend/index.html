@@ -91,7 +91,7 @@
         </div>
         <div class="col-lg-6">
           <div class="position-relative">
-            <div class="ph ph-4-3 shadow-brand"><span class="ph-label">[ hero — producto destacado ]</span></div>
+            <img src="img/aurora-5g.webp.webp" alt="Smartphone Aurora 5G 256GB" class="img-fluid rounded shadow-brand">
             <div class="card border-0 shadow-brand p-3 position-absolute" style="bottom: -22px; left: -10px; max-width: 230px;">
               <div class="d-flex align-items-center gap-3">
                 <span class="cat-icon" style="width:46px;height:46px;font-size:1.2rem;"><i class="bi bi-truck"></i></span>
@@ -249,14 +249,14 @@
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
     const productos = [
-      { n: 'Smartphone Aurora 5G 256GB', cat: 'Móviles', precio: 749900, old: 899900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 5 },
-      { n: 'Notebook UltraBook Pro 14"', cat: 'Laptops', precio: 1349900, old: null, tag: 'NUEVO', tagClass: 'text-bg-primary', r: 5 },
-      { n: 'Auriculares NoiseFree ANC', cat: 'Audio', precio: 189900, old: 229900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
-      { n: 'Consola NebulaPlay X', cat: 'Gaming', precio: 999900, old: null, tag: 'TOP', tagClass: 'text-bg-warning', r: 5 },
-      { n: 'Smartwatch Pulse Fit 2', cat: 'Wearables', precio: 159900, old: 199900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
-      { n: 'Teclado Mecánico RGB Strike', cat: 'Accesorios', precio: 89900, old: null, tag: null, tagClass: '', r: 5 },
-      { n: 'Tablet GlideTab 11"', cat: 'Móviles', precio: 429900, old: 499900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
-      { n: 'Monitor 27" QHD 165Hz', cat: 'Gaming', precio: 379900, old: null, tag: 'NUEVO', tagClass: 'text-bg-primary', r: 5 },
+      { n: 'Smartphone Aurora 5G 256GB', cat: 'Móviles', img:'aurora.png', precio: 749900, old: 899900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 5 },
+      { n: 'Notebook UltraBook Pro 14"', cat: 'Laptops', img:'ultra.jpeg', precio: 1349900, old: null, tag: 'NUEVO', tagClass: 'text-bg-primary', r: 5 },
+      { n: 'Auriculares NoiseFree ANC', cat: 'Audio', img:'auriculares.png',precio: 189900, old: 229900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
+      { n: 'Consola NebulaPlay X', cat: 'Gaming', img:'consola.png', precio: 999900, old: null, tag: 'TOP', tagClass: 'text-bg-warning', r: 5 },
+      { n: 'Smartwatch Pulse Fit 2', cat: 'Wearables', img:'smart.png', precio: 159900, old: 199900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
+      { n: 'Teclado Mecánico RGB Strike', cat: 'Accesorios', img:'teclado.png', precio: 89900, old: null, tag: null, tagClass: '', r: 5 },
+      { n: 'Tablet GlideTab 11"', cat: 'Móviles', img:'tablet.png', precio: 429900, old: 499900, tag: 'OFERTA', tagClass: 'text-bg-danger', r: 4 },
+      { n: 'Monitor 27" QHD 165Hz', cat: 'Gaming', img:'monitor.png', precio: 379900, old: null, tag: 'NUEVO', tagClass: 'text-bg-primary', r: 5 },
     ];
     const fmt = n => '$' + n.toLocaleString('es-AR');
     const stars = r => '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
@@ -267,7 +267,14 @@
             <div class="position-relative">
               ${p.tag ? `<span class="badge ${p.tagClass} tag-badge rounded-pill">${p.tag}</span>` : ''}
               <button class="wish-btn" type="button" aria-label="Favorito" onclick="event.preventDefault();this.querySelector('i').classList.toggle('bi-heart');this.querySelector('i').classList.toggle('bi-heart-fill');"><i class="bi bi-heart"></i></button>
-              <div class="ph ph-1-1"><span class="ph-label">[ ${p.cat} ]</span></div>
+              ${p.img
+  ? `<img src="img/${p.img}" class="card-img-top"
+      alt="${p.n}"
+      style="aspect-ratio:1/1; object-fit:cover;">`
+  : `<div class="ph ph-1-1">
+       <span class="ph-label">[ ${p.cat} ]</span>
+     </div>`
+}
             </div>
             <div class="card-body d-flex flex-column">
               <small class="text-secondary">${p.cat}</small>
