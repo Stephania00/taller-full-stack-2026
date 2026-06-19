@@ -197,12 +197,15 @@ CREATE TABLE usuarios (
 
 ### Tareas — Autenticación
 
-- [ ] Instalar `bcryptjs` y `jsonwebtoken` en el backend
-- [ ] `POST /register` — registrar usuario (hash de contraseña con bcrypt)
-- [ ] `POST /login`    — validar credenciales y devolver JWT
-- [ ] Middleware `verificarToken` que proteja las rutas del admin (`/productos` POST/PUT/DELETE)
-- [ ] Crear `frontend/login.html` con formulario que guarda el token en `localStorage`
-- [ ] Redirigir a `login.html` si no hay token al intentar acceder a `admin-productos.html`
+- [x] Instalar `bcryptjs`, `jsonwebtoken` y `dotenv` en el backend
+- [x] `POST /register` — registrar usuario (hash de contraseña con bcrypt)
+- [x] `POST /login`    — validar credenciales y devolver JWT
+- [x] Middleware `verificarToken` que proteja las rutas del admin (`/productos` POST/PUT/DELETE)
+- [x] Crear `backend/.env` con todas las variables de entorno
+- [x] Actualizar `server.js` para leer credenciales desde `process.env`
+- [x] Restringir CORS al dominio de Vercel via `process.env.FRONTEND_URL`
+- [x] `login.html` — formulario funcional que guarda el token en `localStorage`
+- [x] Redirigir a `login.html` si no hay token al intentar acceder a `admin-productos.html`
 
 ### Tareas — QA
 
