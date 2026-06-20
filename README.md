@@ -122,7 +122,7 @@ PORT=3000
 
 ```bash
 node server.js
-# Servidor corriendo en http://localhost:3000
+# Servidor corriendo en https://taller-full-stack-2026-production.up.railway.app
 ```
 
 ### Paso 5 — Iniciar el frontend
@@ -140,7 +140,7 @@ pnpm dlx serve . -p 5500
 Con el backend corriendo, abrir la consola del navegador (F12) y pegar:
 
 ```js
-fetch('http://localhost:3000/register', {
+fetch('https://taller-full-stack-2026-production.up.railway.app/register', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
