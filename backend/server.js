@@ -9,7 +9,7 @@ const jwt     = require("jsonwebtoken");
 const app = express();
 
 // ── Middlewares ───────────────────────────────────────────────────────────────
-app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
+app.use(cors()); // Permitir peticiones desde cualquier origen en desarrollo/producción
 app.use(express.json());
 
 // ── Conexión MySQL ────────────────────────────────────────────────────────────

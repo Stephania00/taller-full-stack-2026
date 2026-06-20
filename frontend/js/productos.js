@@ -3,7 +3,7 @@
 //   productos.html      → catálogo público (GET /productos — sin token)
 //   admin-productos.html → panel CRUD (requiere token JWT)
 
-const API_URL = 'http://localhost:3000'; // Sprint 4: reemplazar con URL de Railway
+const API_URL = CONFIG.API_URL; // Configuración centralizada
 
 const fmt = n => '$' + Number(n).toLocaleString('es-CO');
 

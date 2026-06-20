@@ -38,7 +38,7 @@ if (formulario) {
         }
 
         // ENVIAR AL BACKEND
-        fetch("http://localhost:3000/guardar", {
+        fetch(`${CONFIG.API_URL}/guardar`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

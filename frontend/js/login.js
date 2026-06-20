@@ -1,7 +1,7 @@
 // login.js — Sprint 4
 // Maneja el formulario de login y la gestión del token JWT
 
-const API_URL_AUTH = 'http://localhost:3000'; // Sprint 4: reemplazar con URL de Railway
+const API_URL_AUTH = CONFIG.API_URL; // Configuración centralizada
 
 // Si ya hay sesión activa, ir directo al admin
 if (localStorage.getItem('tn-token')) {
