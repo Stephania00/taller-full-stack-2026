@@ -1,0 +1,13 @@
+/* Los estilos de marca están en theme.css */
+
+/* ── Catálogo: filtro de categorías activo ── */
+button.chip {
+  cursor: pointer;
+  border: none;
+  font-family: var(--tn-font-body);
+}
+.chip-activo {
+  background: var(--tn-primary) !important;
+  color: #fff !important;
+  border-color: var(--tn-primary) !important;
+}
