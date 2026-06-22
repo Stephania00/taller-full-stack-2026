@@ -1,0 +1,33 @@
+# ── Dependencias ──────────────────────────────────
+node_modules/
+
+# ── Variables de entorno ──────────────────────────
+.env
+.env.local
+.env.production
+
+# ── Carpetas que no forman parte del proyecto ──────
+tienda nube/
+archivosdelultimotaller/
+.claude/
+
+# ── Archivos de video y audio (binarios pesados) ───
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.mp3
+*.wav
+
+# ── Logs ──────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# ── Editores y sistema operativo ──────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
