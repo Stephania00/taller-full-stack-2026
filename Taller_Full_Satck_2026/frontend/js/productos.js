@@ -72,7 +72,7 @@ function renderCatalogo(lista, filtro) {
             ${rutaImagen
                 ? `<img src="${rutaImagen}" class="card-img-top"
                      alt="${p.nombre}" style="aspect-ratio:1/1;object-fit:cover;"
-                     onerror="this.outerHTML='${placeholder.replace(/'/g, "&#39;")}';">`
+                     onerror="this.outerHTML='${placeholder.replace(/'/g, "&#39;").replace(/"/g, '&quot;')}';">`
                 : placeholder
             }
             <div class="card-body d-flex flex-column">
