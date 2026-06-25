@@ -1,6 +1,3 @@
-console.log("Script cargado correctamente");
-
-// Capturar formulario
 const formulario = document.getElementById("formulario");
 
 if (formulario) {
@@ -9,17 +6,11 @@ if (formulario) {
 
         event.preventDefault();
 
-        console.log("Evento submit ejecutado");
-
         const nombre  = document.getElementById("nombre").value.trim();
         const correo  = document.getElementById("correo").value.trim();
         const mensaje = document.getElementById("mensaje").value.trim();
         const asunto  = document.getElementById("asunto").value;
         const acepto  = document.getElementById("acepto").checked;
-
-        console.log("Nombre:", nombre);
-        console.log("Correo:", correo);
-        console.log("Mensaje:", mensaje);
 
         const respuesta = document.getElementById("respuesta");
 
