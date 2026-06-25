@@ -214,4 +214,4 @@ Resultado visible para el usuario
 
 ## 11. Enlace del video de sustentación
 
-[Pendiente — se publicará en YouTube próximamente]
+[https://drive.google.com/drive/folders/1QPwcK4O-jc1RWjOKt9iibbRGgiImqxOZ]
